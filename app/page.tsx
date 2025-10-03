@@ -137,35 +137,35 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-background p-4 pb-[150px]">
       <div className="max-w-6xl mx-auto space-y-6">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-3xl font-bold">
-              <span className="inline-block truncate max-w-[200px] align-bottom">
-                {settings?.nickname}
+        <div className="flex flex-col gap-4">
+          <div className="overflow-hidden">
+            <h1 className="text-3xl font-bold truncate">
+              <span className="inline-block max-w-full align-bottom">
+                {settings?.nickname}의 매매 일지
               </span>
-              의 매매 일지
             </h1>
             <p className="text-muted-foreground">원칙을 지키는 트레이딩</p>
           </div>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             {trades.length > 0 && <ExportButton />}
             <Button
               variant="outline"
               size="lg"
               onClick={() => router.push("/stats")}
+              className="flex-1 sm:flex-none"
             >
               통계 보기
             </Button>
             <Button
               size="lg"
               onClick={() => router.push("/trade/new/checklist")}
+              className="flex-1 sm:flex-none"
             >
               <Plus className="mr-2 h-4 w-4" />새 매매 시작
             </Button>
           </div>
         </div>
 
-        {/* 통계 카드들 - 기존 코드 그대로 */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <Card>
             <CardHeader className="pb-3">
@@ -227,7 +227,6 @@ export default function HomePage() {
           </Card>
         </div>
 
-        {/* 필터 - 기존 코드 그대로 */}
         {trades.length > 0 && (
           <Card>
             <CardHeader>
@@ -246,7 +245,6 @@ export default function HomePage() {
           </Card>
         )}
 
-        {/* 진행 중인 매매 - 기존 코드에서 loadTrades만 추가 */}
         {openTrades.length > 0 && statusFilter !== "closed" && (
           <div>
             <h2 className="text-xl font-semibold mb-4">
@@ -322,7 +320,6 @@ export default function HomePage() {
           </div>
         )}
 
-        {/* 종료된 매매 - 기존과 동일, loadTrades만 추가 */}
         {closedTrades.length > 0 && statusFilter !== "open" && (
           <div>
             <h2 className="text-xl font-semibold mb-4">
@@ -420,7 +417,6 @@ export default function HomePage() {
           </div>
         )}
 
-        {/* 빈 상태 - 기존 코드 그대로 */}
         {trades.length === 0 && (
           <Card>
             <CardContent className="pt-12 pb-12 text-center">
