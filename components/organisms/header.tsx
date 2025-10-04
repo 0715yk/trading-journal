@@ -74,26 +74,33 @@ export function Header() {
             </span>
           </button>
         </div>
-        <nav className="flex items-center space-x-6 text-sm font-medium flex-1">
+        <nav className="flex items-center space-x-2 md:space-x-6 text-sm font-medium flex-1">
           <Button
             variant={pathname === "/" ? "secondary" : "ghost"}
             onClick={() => router.push("/")}
+            size="sm"
+            className="md:h-10"
           >
-            <Home className="mr-2 h-4 w-4" />홈
+            <Home className="h-4 w-4 md:mr-2" />
+            <span className="hidden md:inline">홈</span>
           </Button>
           <Button
             variant={pathname === "/stats" ? "secondary" : "ghost"}
             onClick={() => router.push("/stats")}
+            size="sm"
+            className="md:h-10"
           >
-            <BarChart3 className="mr-2 h-4 w-4" />
-            통계
+            <BarChart3 className="h-4 w-4 md:mr-2" />
+            <span className="hidden md:inline">통계</span>
           </Button>
           <Button
             variant={pathname === "/about" ? "secondary" : "ghost"}
             onClick={() => router.push("/about")}
+            size="sm"
+            className="md:h-10"
           >
-            <Info className="mr-2 h-4 w-4" />
-            소개
+            <Info className="h-4 w-4 md:mr-2" />
+            <span className="hidden md:inline">소개</span>
           </Button>
         </nav>
 

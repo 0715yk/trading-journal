@@ -2,7 +2,7 @@
 
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
   Card,
@@ -12,19 +12,22 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 import { supabase } from "@/lib/supabase/client";
-import { BarChart3 } from "lucide-react";
+import { BarChart3, AlertCircle } from "lucide-react";
 
 export default function LoginPage() {
   const router = useRouter();
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    // 이미 로그인된 경우 홈으로 리다이렉트
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session) {
         router.push("/");
       }
     });
+
+    setIsMobile(/iPhone|iPad|iPod|Android/i.test(navigator.userAgent));
   }, [router]);
 
   const handleGoogleLogin = async () => {
@@ -46,13 +49,32 @@ export default function LoginPage() {
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
           <div className="flex justify-center mb-4">
-            <BarChart3 className="h-12 w-12" />
+            <BarChart3 className="h-12 w-12 text-[#0ecb81]" />
           </div>
-          <CardTitle className="text-2xl">Commitrade</CardTitle>
+          <CardTitle className="text-2xl">
+            <span className="bg-gradient-to-r from-[#0ecb81] to-[#f6465d] bg-clip-text text-transparent">
+              Commitrade
+            </span>
+          </CardTitle>
           <CardDescription>원칙을 지키는 트레이딩 일지</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
-          <Button onClick={handleGoogleLogin} className="w-full" size="lg">
+          {isMobile && (
+            <Alert variant="destructive">
+              <AlertCircle className="h-4 w-4" />
+              <AlertDescription>
+                모바일에서는 Google 로그인이 지원되지 않습니다. PC 또는 데스크탑
+                브라우저에서 접속해주세요.
+              </AlertDescription>
+            </Alert>
+          )}
+
+          <Button
+            onClick={handleGoogleLogin}
+            className="w-full"
+            size="lg"
+            disabled={isMobile}
+          >
             <svg className="mr-2 h-5 w-5" viewBox="0 0 24 24">
               <path
                 fill="currentColor"
@@ -73,6 +95,12 @@ export default function LoginPage() {
             </svg>
             Google로 시작하기
           </Button>
+
+          {isMobile && (
+            <p className="text-xs text-center text-muted-foreground">
+              현재 모바일 환경에서는 서비스 이용이 제한됩니다.
+            </p>
+          )}
         </CardContent>
       </Card>
     </div>
