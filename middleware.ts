@@ -12,10 +12,15 @@ export async function middleware(req: NextRequest) {
     data: { session },
   } = await supabase.auth.getSession();
 
-  // 로그인 페이지는 항상 접근 가능
-  if (req.nextUrl.pathname === "/login") {
-    // 이미 로그인된 경우 홈으로 리다이렉트
-    if (session) {
+  // Public 페이지 목록
+  const publicPaths = ["/login", "/about"];
+  const isPublicPath = publicPaths.some(
+    (path) => req.nextUrl.pathname === path
+  );
+
+  if (isPublicPath) {
+    // 로그인 페이지에서 이미 로그인된 경우 홈으로
+    if (req.nextUrl.pathname === "/login" && session) {
       return NextResponse.redirect(new URL("/", req.url));
     }
     return res;

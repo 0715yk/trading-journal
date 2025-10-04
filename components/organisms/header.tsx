@@ -19,6 +19,7 @@ import {
   Home,
   Settings,
   LogOut,
+  Info,
 } from "lucide-react";
 import { ThemeToggle } from "@/components/molecules/theme-toggle";
 import { supabase } from "@/lib/supabase/client";
@@ -65,16 +66,14 @@ export function Header() {
         <div className="mr-4 flex">
           <button
             onClick={() => router.push("/")}
-            className="mr-6 flex items-center space-x-2"
+            className="mr-6 flex items-center space-x-2 group"
           >
-            <BarChart3 className="h-6 w-6" />
-            <span className="hidden font-bold sm:inline-block">
-              <span className="text-[#0ecb81]">Trading</span>{" "}
-              <span className="text-[#f6465d]">Journal</span>
+            <BarChart3 className="h-6 w-6 text-[#0ecb81] group-hover:text-[#f6465d] transition-colors" />
+            <span className="hidden font-bold sm:inline-block bg-gradient-to-r from-[#0ecb81] to-[#f6465d] bg-clip-text text-transparent">
+              Commitrade
             </span>
           </button>
         </div>
-
         <nav className="flex items-center space-x-6 text-sm font-medium flex-1">
           <Button
             variant={pathname === "/" ? "secondary" : "ghost"}
@@ -88,6 +87,13 @@ export function Header() {
           >
             <BarChart3 className="mr-2 h-4 w-4" />
             통계
+          </Button>
+          <Button
+            variant={pathname === "/about" ? "secondary" : "ghost"}
+            onClick={() => router.push("/about")}
+          >
+            <Info className="mr-2 h-4 w-4" />
+            소개
           </Button>
         </nav>
 

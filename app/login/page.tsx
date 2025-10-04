@@ -48,7 +48,7 @@ export default function LoginPage() {
           <div className="flex justify-center mb-4">
             <BarChart3 className="h-12 w-12" />
           </div>
-          <CardTitle className="text-2xl">Trading Journal</CardTitle>
+          <CardTitle className="text-2xl">Commitrade</CardTitle>
           <CardDescription>원칙을 지키는 트레이딩 일지</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">

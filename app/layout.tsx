@@ -14,8 +14,8 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   metadataBase: new URL("https://commitrade.io"),
   title: {
-    default: "Trading Journal - 원칙을 지키는 트레이딩",
-    template: "%s | Trading Journal",
+    default: "Commitrade - 원칙을 지키는 트레이딩",
+    template: "%s | Commitrade",
   },
   description:
     "체계적인 매매 원칙과 체크리스트로 감정적 거래를 방지하고, 데이터 기반 트레이딩을 실현하세요. 리스크 관리, 손익 추적, 통계 분석을 한 곳에서.",
@@ -31,14 +31,14 @@ export const metadata: Metadata = {
     "매매 기록",
     "투자 일지",
   ],
-  authors: [{ name: "Trading Journal" }],
-  creator: "Trading Journal",
+  authors: [{ name: "Yongki Hong" }],
+  creator: "Yongki Hong",
   openGraph: {
     type: "website",
     locale: "ko_KR",
     url: "https://commitrade.io",
-    siteName: "Trading Journal",
-    title: "Trading Journal - 원칙을 지키는 트레이딩",
+    siteName: "Commitrade",
+    title: "Commitrade - 원칙을 지키는 트레이딩",
     description:
       "체계적인 매매 원칙과 체크리스트로 감정적 거래를 방지하고, 데이터 기반 트레이딩을 실현하세요.",
     images: [
@@ -46,14 +46,14 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Trading Journal",
+        alt: "Commitrade",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
     images: ["/og-image.png"],
-    title: "Trading Journal - 원칙을 지키는 트레이딩",
+    title: "Commitrade - 원칙을 지키는 트레이딩",
     description:
       "체계적인 매매 원칙과 체크리스트로 감정적 거래를 방지하고, 데이터 기반 트레이딩을 실현하세요.",
   },
