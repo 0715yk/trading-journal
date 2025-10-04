@@ -43,7 +43,7 @@ export const metadata: Metadata = {
       "체계적인 매매 원칙과 체크리스트로 감정적 거래를 방지하고, 데이터 기반 트레이딩을 실현하세요.",
     images: [
       {
-        url: "/api/og",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "Trading Journal",
@@ -52,10 +52,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
+    images: ["/og-image.png"],
     title: "Trading Journal - 원칙을 지키는 트레이딩",
     description:
       "체계적인 매매 원칙과 체크리스트로 감정적 거래를 방지하고, 데이터 기반 트레이딩을 실현하세요.",
-    images: ["/api/og"],
   },
   robots: {
     index: true,
