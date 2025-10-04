@@ -12,7 +12,7 @@ import { ConsoleBanner } from "@/components/molecules/console-banner";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://trading-journal-rosy.vercel.app/"),
+  metadataBase: new URL("https://commitrade.io"),
   title: {
     default: "Trading Journal - 원칙을 지키는 트레이딩",
     template: "%s | Trading Journal",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "ko_KR",
-    url: "https://trading-journal-rosy.vercel.app",
+    url: "https://commitrade.io",
     siteName: "Trading Journal",
     title: "Trading Journal - 원칙을 지키는 트레이딩",
     description:

@@ -5,6 +5,6 @@ Allow: /
 Disallow: /admin
 Disallow: /api/
 
-Sitemap: https://trading-journal-rosy.vercel.app/sitemap.xml
+Sitemap: https://commitrade.io/sitemap.xml
 
 
