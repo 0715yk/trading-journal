@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/components/providers/theme-provider";
 import { Header } from "@/components/organisms/header";
 import { AuthProvider } from "@/lib/contexts/settings-context";
 import { QuotesMarquee } from "@/components/molecules/quotes-marquee";
+import { ConsoleBanner } from "@/components/molecules/console-banner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -77,6 +78,7 @@ export default function RootLayout({
   return (
     <html lang="ko" suppressHydrationWarning>
       <body className={inter.className}>
+        <ConsoleBanner />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
