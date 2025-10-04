@@ -69,7 +69,8 @@ export function Header() {
           >
             <BarChart3 className="h-6 w-6" />
             <span className="hidden font-bold sm:inline-block">
-              Trading Journal
+              <span className="text-[#0ecb81]">Trading</span>{" "}
+              <span className="text-[#f6465d]">Journal</span>
             </span>
           </button>
         </div>

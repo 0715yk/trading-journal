@@ -150,3 +150,59 @@ export const tradesApi = {
     if (error) throw error;
   },
 };
+
+export const quotesApi = {
+  getRandom: async (limit: number = 5): Promise<string[]> => {
+    const { data, error } = await supabase
+      .from("trading_quotes")
+      .select("content")
+      .eq("is_active", true)
+      .limit(limit);
+
+    if (error) throw error;
+    return data?.map((q) => q.content) || [];
+  },
+
+  getAll: async (): Promise<
+    Array<{ id: string; content: string; author: string | null }>
+  > => {
+    const { data, error } = await supabase
+      .from("trading_quotes")
+      .select("*")
+      .eq("is_active", true)
+      .order("created_at", { ascending: false });
+
+    if (error) throw error;
+    return data || [];
+  },
+
+  create: async (content: string, author?: string): Promise<void> => {
+    const { error } = await supabase
+      .from("trading_quotes")
+      .insert({ content, author: author || null });
+
+    if (error) throw error;
+  },
+
+  update: async (
+    id: string,
+    content: string,
+    author?: string
+  ): Promise<void> => {
+    const { error } = await supabase
+      .from("trading_quotes")
+      .update({ content, author: author || null })
+      .eq("id", id);
+
+    if (error) throw error;
+  },
+
+  delete: async (id: string): Promise<void> => {
+    const { error } = await supabase
+      .from("trading_quotes")
+      .delete()
+      .eq("id", id);
+
+    if (error) throw error;
+  },
+};

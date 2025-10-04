@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Plus, TrendingUp, TrendingDown, Calendar } from "lucide-react";
+import { Plus, TrendingUp, TrendingDown, Calendar, Play } from "lucide-react";
 import { ACCOUNT_TYPES } from "@/lib/constants/trading-rules";
 import { TradeActions } from "@/components/molecules/trade-actions";
 import {
@@ -22,10 +22,10 @@ import {
   AccountTypeFilter,
   SortBy,
 } from "@/components/molecules/trade-filters";
-import { ExportButton } from "@/components/molecules/export-button";
 import { tradesApi } from "@/lib/supabase/api";
 import type { Trade } from "@/lib/types/trade";
 import { useSettings } from "@/lib/contexts/settings-context";
+import { draftStorage } from "@/lib/storage/draft-storage";
 
 export default function HomePage() {
   const router = useRouter();
@@ -33,6 +33,7 @@ export default function HomePage() {
   const [isMounted, setIsMounted] = useState(false);
   const [trades, setTrades] = useState<Trade[]>([]);
   const [loading, setLoading] = useState(true);
+  const [hasDraft, setHasDraft] = useState(false);
 
   const [statusFilter, setStatusFilter] = useState<TradeStatus>("all");
   const [accountTypeFilter, setAccountTypeFilter] =
@@ -42,6 +43,11 @@ export default function HomePage() {
   useEffect(() => {
     setIsMounted(true);
     loadTrades();
+
+    const draft = draftStorage.getDraft();
+    setHasDraft(
+      !!draft?.checklist || !!draft?.currentStep || !!draft?.timerState
+    );
   }, []);
 
   const loadTrades = async () => {
@@ -54,6 +60,15 @@ export default function HomePage() {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleContinueTrade = () => {
+    router.push("/trade/new/checklist");
+  };
+
+  const handleNewTrade = () => {
+    draftStorage.clearDraft();
+    router.push("/trade/new/checklist");
   };
 
   const filteredAndSortedTrades = useMemo(() => {
@@ -137,8 +152,8 @@ export default function HomePage() {
   return (
     <div className="min-h-screen bg-background p-4 pb-[150px]">
       <div className="max-w-6xl mx-auto space-y-6">
-        <div className="flex flex-col gap-4">
-          <div className="overflow-hidden">
+        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+          <div>
             <h1 className="text-3xl font-bold truncate">
               <span className="inline-block max-w-full align-bottom">
                 {settings?.nickname}의 매매 일지
@@ -147,22 +162,25 @@ export default function HomePage() {
             <p className="text-muted-foreground">원칙을 지키는 트레이딩</p>
           </div>
           <div className="flex flex-wrap gap-2">
-            {trades.length > 0 && <ExportButton />}
-            <Button
-              variant="outline"
-              size="lg"
-              onClick={() => router.push("/stats")}
-              className="flex-1 sm:flex-none"
-            >
-              통계 보기
-            </Button>
-            <Button
-              size="lg"
-              onClick={() => router.push("/trade/new/checklist")}
-              className="flex-1 sm:flex-none"
-            >
-              <Plus className="mr-2 h-4 w-4" />새 매매 시작
-            </Button>
+            {hasDraft ? (
+              <>
+                <Button
+                  variant="outline"
+                  size="lg"
+                  onClick={handleContinueTrade}
+                >
+                  <Play className="mr-2 h-4 w-4" />
+                  매매 이어하기
+                </Button>
+                <Button size="lg" onClick={handleNewTrade}>
+                  <Plus className="mr-2 h-4 w-4" />새 매매 시작
+                </Button>
+              </>
+            ) : (
+              <Button size="lg" onClick={handleNewTrade}>
+                <Plus className="mr-2 h-4 w-4" />새 매매 시작
+              </Button>
+            )}
           </div>
         </div>
 
@@ -427,10 +445,7 @@ export default function HomePage() {
               <p className="text-muted-foreground mb-6">
                 첫 매매를 시작하고 원칙을 지키는 트레이딩을 시작하세요
               </p>
-              <Button
-                size="lg"
-                onClick={() => router.push("/trade/new/checklist")}
-              >
+              <Button size="lg" onClick={handleNewTrade}>
                 <Plus className="mr-2 h-4 w-4" />첫 매매 시작하기
               </Button>
             </CardContent>
