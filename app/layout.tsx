@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "ko_KR",
-    url: "https://your-domain.vercel.app",
+    url: "https://trading-journal-rosy.vercel.app",
     siteName: "Trading Journal",
     title: "Trading Journal - 원칙을 지키는 트레이딩",
     description:
