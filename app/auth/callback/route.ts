@@ -9,11 +9,10 @@ export async function GET(request: Request) {
   const code = requestUrl.searchParams.get("code");
 
   if (code) {
-    // Next.js 15: cookies()는 비동기이므로 먼저 await.
-    // 이미 해석된 cookieStore를 넘겨야 리다이렉트 전에 세션 쿠키가 응답에 포함됨.
+    // Next.js 15: cookies()는 비동기. await한 store를 Promise로 넘겨 타입·동작 모두 만족.
     const cookieStore = await cookies();
     const supabase = createRouteHandlerClient({
-      cookies: () => cookieStore,
+      cookies: () => Promise.resolve(cookieStore),
     });
     await supabase.auth.exchangeCodeForSession(code);
   }
