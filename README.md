@@ -1,5 +1,9 @@
 # Commitrade
 
+<p align="center">
+  <img src="public/icon.png" alt="Commitrade Logo" width="120" />
+</p>
+
 > **원칙을 지키는 트레이딩**
 
 감정적 거래와 뇌동매매를 방지하고, 체계적인 매매 원칙을 통해 일관성 있는 트레이딩을 실현하는 **매매일지 플랫폼**입니다.
@@ -13,6 +17,10 @@
 Commitrade는 매매 전 **강제적인 체크리스트**와 **타이머**를 통해 충동적인 결정을 막고, 데이터 기반의 합리적인 판단을 돕습니다.
 
 > *"Commit to your rules, trade with discipline."*
+
+<p align="center">
+  <img src="public/og-image.png" alt="Commitrade Dashboard" width="720" />
+</p>
 
 ---
 
@@ -88,10 +96,10 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 
 ## 배포
 
-[Vercel](https://vercel.com)에 배포하는 것을 권장합니다. Supabase URL과 Anon Key를 환경 변수로 설정하면 됩니다.
+[Vercel](https://vercel.com)에 배포하는 것을 권장합니다. Supabase URL과 Anon Key는 Vercel 대시보드의 환경 변수에만 설정하면 되며, 저장소에는 포함되지 않습니다.
 
 ---
 
 ## 라이선스
 
-Private
+MIT
