@@ -1,9 +1,5 @@
 # Commitrade
 
-<p align="center">
-  <img src="public/icon.png" alt="Commitrade Logo" width="120" />
-</p>
-
 > **원칙을 지키는 트레이딩**
 
 감정적 거래와 뇌동매매를 방지하고, 체계적인 매매 원칙을 통해 일관성 있는 트레이딩을 실현하는 **매매일지 플랫폼**입니다.
